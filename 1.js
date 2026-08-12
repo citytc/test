@@ -1,11 +1,6 @@
 /*
-  防御验证 v2 —— 双权益 ID 注入（对应二进制中的两个 ID）
-[rewrite_local]
-^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$) url script-response-body https://your-gist/MOZE-test-v2.js
-[MITM]
-hostname = api.revenuecat.com
+  防御验证 v2 —— 双权益 ID 注入
 */
-
 var body = JSON.parse($response.body);
 var subscriber = body.subscriber || {};
 
@@ -19,7 +14,6 @@ function makeEntitlement(pid) {
   };
 }
 
-// 两个 ID 都注入：覆盖 MOZE_PREMIUM_SUBSCRIPTION 与 PRO_SUBSCRIPTION
 var entitlements = Object.assign({}, subscriber.entitlements, {
   "MOZE_PREMIUM_SUBSCRIPTION": makeEntitlement("MOZE_PRO_SUBSCRIPTION_YEARLY_BASIC"),
   "PRO_SUBSCRIPTION": makeEntitlement("MOZE_PRO_SUBSCRIPTION_YEARLY_BASIC")
