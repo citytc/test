@@ -6,9 +6,9 @@ var subscriber = body.subscriber || {};
 
 function makeEntitlement(pid) {
   return {
-    "expires_date": "6666-06-06T06:06:06Z",
+    "expires_date": "2030-06-06T06:06:06Z",
     "product_identifier": pid,
-    "purchase_date": "2023-02-23T02:33:33Z",
+    "purchase_date": "2026-02-23T02:33:33Z",
     "ownership_type": "PURCHASED",
     "store": "app_store"
   };
@@ -21,9 +21,9 @@ var entitlements = Object.assign({}, subscriber.entitlements, {
 subscriber.entitlements = entitlements;
 subscriber.subscriptions = Object.assign({}, subscriber.subscriptions, {
   "MOZE_PRO_SUBSCRIPTION_YEARLY_BASIC": Object.assign({}, makeEntitlement("MOZE_PRO_SUBSCRIPTION_YEARLY_BASIC"), {
-    "original_purchase_date": "2023-02-23T02:33:33Z"
+    "original_purchase_date": "2026-02-23T02:33:33Z"
   })
 });
-subscriber.original_purchase_date = "2023-02-23T03:33:33Z";
+subscriber.original_purchase_date = "2026-02-23T03:33:33Z";
 body.subscriber = subscriber;
 $done({ body: JSON.stringify(body) });
